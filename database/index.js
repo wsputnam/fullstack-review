@@ -6,7 +6,8 @@ let repoSchema = mongoose.Schema({
   username: STRING,
   userID: INT,
   repoName: STRING,
-  repoID: INT
+  repoID: INT,
+  forks: INT
 });
 
 let User = mongoose.model('User', repoSchema);
@@ -31,6 +32,7 @@ let save = (data) => {
   })
 }
 
+// this is for when the user searches for info
 let find = (searchTerm) => {
 	Repo.find({username: searchTerm}, function(err, display) {
 		if (err) {
