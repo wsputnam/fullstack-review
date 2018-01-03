@@ -2,8 +2,9 @@ const express = require('express');
 let app = express();
 // const db = require('./db');
 const user = require('../database/index.js');
+const getReposByUsername = require('../helpers/github.js');
+
 const bodyParser = require('body-parser');
-// var getReposByUsername = require('../helpers/github.js');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
@@ -14,8 +15,10 @@ app.post('/repos', function (req, res) {
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-  repos.push(req.body);
+  repos.push(getReposByUsername(req.body));
   res.json(repos);
+  console.log('body', req.body);
+  console.log('repos', repos);
 
   // first part will need to call helper function and search for info from the API
   // getReposByUsername(req.body);
@@ -29,6 +32,10 @@ app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   // send back top 25 repos from the database
   // order by forks count
+
+  // are we sending the database or the html file here?
+  res.json({message: 'hello'});
+  console.log('hello there from get request');
 
   // need to learn how to query this in the mongodb database
 
