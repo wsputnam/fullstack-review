@@ -19,7 +19,7 @@ app.route('/repos')
 
 	  getReposByUsername(req.body);
 	  res.json(req.body);
-
+      user.saveUsers(req.body);
 	  // second part will need to save the info into the database
       // user.saveUsers(data);
 
@@ -32,6 +32,7 @@ app.route('/repos')
 
 	  // are we sending the database or the html file here?
 	  res.json(req.body);
+	  user.findResults();
 	  console.log(user);
 	  console.log('hello there from get request');
 

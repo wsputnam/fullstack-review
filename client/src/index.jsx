@@ -53,6 +53,7 @@ class App extends React.Component {
         console.log('error here', error);
       }
     });
+ 
   }
   componentDidMount() {
     // call app.get to get the top 25 repos
