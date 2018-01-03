@@ -1,25 +1,32 @@
 const express = require('express');
 let app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+var getReposByUsername = require('../helpers/github.js');
 
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
-var repos = [];
-var pushToRepos = function(term) {
-	repos.push(term);
-	console.log('repos', repos);
-};
+
 app.post('/repos', function (req, res) {
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
+
+  // first part will need to call helper function and search for info from the API
+
+  // second part will need to save the info into the database
 });
+
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  // could we do limit 25
+  // send back top 25 repos from the database
+  // order by forks count
+
+  // need to learn how to query this in the mongodb database
+
 });
 
 let port = 1128;

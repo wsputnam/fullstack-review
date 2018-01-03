@@ -17,6 +17,12 @@ class App extends React.Component {
   search (term) {
     console.log(`${term} was searched`);
 
+    // this function needs to invoke post request from server to api with ajax call
+
+    // then server needs to get info from api
+
+    // and server will save that info to the database
+
     $.ajax({
       type: 'POST',
       url: '/repos',
@@ -29,6 +35,10 @@ class App extends React.Component {
         console.log('error', error);
       }
     })
+  }
+
+  componentDidMount() {
+    // call app.get to get the top 25 repos
   }
 
   render () {

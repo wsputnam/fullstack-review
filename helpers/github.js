@@ -15,7 +15,6 @@ let getReposByUsername = (term) => {
     }
   };
   request(options, function(error, response, body) {
-    // show body
     if (error) {
       console.error('there is an error', error);
     }

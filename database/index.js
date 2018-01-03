@@ -18,25 +18,26 @@ let save = (data) => {
   // the MongoDB
 
   // need to call the save method
-  // Repo.save(function(err, display) {
-  //   if (err) {
-  //   	return console.error(err);
-  //   }
-  //   // do something with the repo
-  //   display.username = data.owner.login;
-  //   display.userID = data.owner.id;
-  //   display.repoName = data.name;
-  //   display.repoID = data.id;
-  // })
+  Repo.save(function(err, display) {
+    if (err) {
+    	return console.error(err);
+    }
+    // do something with the repo
+    display.username = data.owner.login;
+    display.userID = data.owner.id;
+    display.repoName = data.name;
+    display.repoID = data.id;
+    display.forks = data.forks_count;
+  })
 }
 
-// let find = (searchTerm) => {
-// 	Repo.find({username: searchTerm}, function(err, display) {
-// 		if (err) {
-// 			return console.error(err);
-// 		}
-// 		console.log('results', display);
-// 	})
-// }
+let find = (searchTerm) => {
+	Repo.find({username: searchTerm}, function(err, display) {
+		if (err) {
+			return console.error(err);
+		}
+		console.log('results', display);
+	})
+}
 
 module.exports.save = save;
