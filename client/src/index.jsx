@@ -11,11 +11,15 @@ class App extends React.Component {
     this.state = { 
       repos: ['wsputnam', 'rrmartin']
     }
-
+    this.load = this.load.bind(this);
+    this.search = this.search.bind(this);
   }
 
   search (term) {
     console.log(`${term} was searched`);
+    var data = {
+      name: term
+    }
 
     // this function needs to invoke post request from server to api with ajax call
 
@@ -27,6 +31,7 @@ class App extends React.Component {
       url: '/repos',
       contentType: 'application/json',
       dataType: 'json',
+      data: JSON.stringify(data),
       success: this.load.call(this),
       error: function(error) {
         console.log('error', error);
@@ -41,6 +46,7 @@ class App extends React.Component {
       contentType: 'application/json',
       dataType: 'json',
       success: function(data) {
+        console.log('rendering');
         this.setState({repos: data});
       }.bind(this),
       error: function(error) {

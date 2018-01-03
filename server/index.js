@@ -16,7 +16,7 @@ app.route('/repos')
 	  // This route should take the github username provided
 	  // and get the repo information from the github API, then
 	  // save the repo information in the database
-	  repos.push(getReposByUsername(req.body));
+	  getReposByUsername(req.body);
 	  res.json(req.body);
 	  console.log('repos', req.body);
 

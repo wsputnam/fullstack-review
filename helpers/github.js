@@ -2,9 +2,9 @@ const request = require('request');
 const config = require('../config.js');
 
 let getReposByUsername = (term) => {
-  
+  var username = term.name;
   let options = {
-    url: `https://api.github.com/users/wsputnam/repos`,
+    url: `https://api.github.com/users/${username}/repos`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
