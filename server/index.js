@@ -17,12 +17,11 @@ app.route('/repos')
 	  // save the repo information in the database
 	  // first part will need to call helper function and search for info from the API
 
-	  var data = getReposByUsername(req.body);
+	  getReposByUsername(req.body);
 	  res.json(req.body);
-	  console.log('repos', req.body);
 
 	  // second part will need to save the info into the database
-      user.saveUsers(data);
+      // user.saveUsers(data);
 
 
 	})
@@ -32,7 +31,8 @@ app.route('/repos')
 	  // order by forks count
 
 	  // are we sending the database or the html file here?
-	  res.json({message: 'hello'});
+	  res.json(req.body);
+	  console.log(user);
 	  console.log('hello there from get request');
 
 	  // need to learn how to query this in the mongodb database

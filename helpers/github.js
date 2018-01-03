@@ -1,5 +1,6 @@
 const request = require('request');
 const config = require('../config.js');
+const db = require('../database/index.js');
 
 let getReposByUsername = (term) => {
   var username = term.name;
@@ -15,7 +16,10 @@ let getReposByUsername = (term) => {
       console.error('there is an error', error);
     }
     let data = JSON.parse(body);
-    // console.log('here is data', data);
+    // for (var i = 0; i < data.length; i++) {
+    //   db.saveUsers(data[i]);
+    // }
+    console.log('here is data', data);
   })
 
 }

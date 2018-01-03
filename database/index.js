@@ -13,6 +13,7 @@ var User = mongoose.model('User', repoSchema);
 
 	module.exports = {
 		saveUsers: function(req, res) {
+			console.log('request', req);
 			var repo = req.body;
 			new User({name: repo.owner.login, userID: repo.owner.id, repoName: repo.name, repoID: repo.id, forks: repo.forks_count})
 			.save(function(err) {
