@@ -47,7 +47,7 @@ class App extends React.Component {
       dataType: 'json',
       success: function(data) {
         console.log('rendering');
-        this.setState({repos: data});
+        this.setState({repos: [data]});
       }.bind(this),
       error: function(error) {
         console.log('error here', error);

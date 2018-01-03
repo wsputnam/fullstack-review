@@ -32,10 +32,10 @@ var User = mongoose.model('User', repoSchema);
 					res.statusCode(404);
 					res.end(err);
 				} else {
-					for (var i = 0; i < docs.length; i++) {
+					for (var i = 0; i < 25; i++) {
 						console.log('user:', docs[i].username);
 					}
-					res.end(JSON.stringify(docs));
+					res.end(JSON.stringify(docs.slice(0, 25)));
 				}
 			})
 	}
