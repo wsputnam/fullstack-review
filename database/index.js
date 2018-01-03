@@ -1,46 +1,44 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
-let repoSchema = mongoose.Schema({
+let repoSchema = new mongoose.Schema({
   // TODO: your schema here!
-  username: STRING,
-  userID: INT,
-  repoName: STRING,
-  repoID: INT,
-  forks: INT
+  username: String,
+  userID: Number,
+  repoName: String,
+  repoID: Number,
+  forks: Number
 });
 
-let User = mongoose.model('User', repoSchema);
+var User = mongoose.model('User', repoSchema);
 
-var display = new Repo({});
+	module.exports = {
+		saveUsers: function(req, res) {
+			var repo = req.body;
+			new User({name: repo.owner.login, userID: repo.owner.id, repoName: repo.name, repoID: repo.id, forks: repo.forks_count})
+			.save(function(err) {
+				if (err) {
+					res.statusCode(404);
+					res.end(err);
+				} else {
+					console.log('user saved to database');
+					res.end();
+				}
+			});
+		},
+		findResults: function(req, res, next) {
+			User.find({}, function(err, docs) {
+				if (err) {
+					res.statusCode(404);
+					res.end(err);
+				} else {
+					for (var i = 0; i < docs.length; i++) {
+						console.log('user:', docs[i].username);
+					}
+					res.end(JSON.stringify(docs));
+				}
+			})
+	}
 
-let save = (data) => {
-  // This function should save a repo or repos to
-  // the MongoDB
 
-  // need to call the save method
-  Repo.save(function(err, display) {
-    if (err) {
-    	return console.error(err);
-    }
-    // do something with the repo
-    display.username = data.owner.login;
-    display.userID = data.owner.id;
-    display.repoName = data.name;
-    display.repoID = data.id;
-    display.forks = data.forks_count;
-  })
 }
-
-// this is for when the user searches for info
-let find = (searchTerm) => {
-	Repo.find({username: searchTerm}, function(err, display) {
-		if (err) {
-			return console.error(err);
-		}
-		console.log('results', display);
-	})
-}
-
-module.exports.find = find;
-module.exports.save = save;
