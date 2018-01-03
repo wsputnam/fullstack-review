@@ -8,7 +8,7 @@ let getReposByUsername = (term) => {
   // The options object has been provided to help you out, 
   // but you'll have to fill in the URL
   let options = {
-    url: `https://api.github.com/?access_token=${config.TOKEN}`,
+    url: `https://api.github.com/users/wsputnam/repos`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
@@ -19,7 +19,7 @@ let getReposByUsername = (term) => {
       console.error('there is an error', error);
     }
     let data = JSON.parse(body);
-    console.log('here is data', data);
+    // console.log('here is data', data);
   })
 
 }

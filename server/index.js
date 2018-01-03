@@ -16,9 +16,8 @@ app.post('/repos', function (req, res) {
   // and get the repo information from the github API, then
   // save the repo information in the database
   repos.push(getReposByUsername(req.body));
-  res.json(repos);
-  console.log('body', req.body);
-  console.log('repos', repos);
+  res.json(req.body);
+  console.log('repos', req.body);
 
   // first part will need to call helper function and search for info from the API
   // getReposByUsername(req.body);
@@ -47,4 +46,4 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
-module.exports = app;
+module.exports = repos;

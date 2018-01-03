@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
-// import app from '../../server/index.js'
+// import repos from '../../server/index.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -27,30 +27,30 @@ class App extends React.Component {
       url: '/repos',
       contentType: 'application/json',
       dataType: 'json',
-      success: function(term) {
-        console.log('working')
-       
-      },
+      success: this.load.call(this),
       error: function(error) {
         console.log('error', error);
       }
     })
   }
 
-  componentDidMount() {
-    // call app.get to get the top 25 repos
+  load() {
     $.ajax({
       type: 'GET',
       url: '/repos',
       contentType: 'application/json',
       dataType: 'json',
-      success: function() {
-        console.log('rendering');
-      },
+      success: function(data) {
+        this.setState({repos: data});
+      }.bind(this),
       error: function(error) {
         console.log('error here', error);
       }
-    })
+    });
+  }
+  componentDidMount() {
+    // call app.get to get the top 25 repos
+    this.load.call(this);
   }
 
   render () {
