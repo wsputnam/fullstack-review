@@ -6,6 +6,7 @@ var getReposByUsername = require('../helpers/github.js');
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
+app.repos = ['wsputnam', 'rrmartin'];
 
 app.post('/repos', function (req, res) {
   // TODO - your code here!
@@ -14,6 +15,7 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
 
   // first part will need to call helper function and search for info from the API
+  getReposByUsername(req.body);
 
   // second part will need to save the info into the database
 });

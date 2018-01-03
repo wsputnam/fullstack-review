@@ -42,4 +42,5 @@ let find = (searchTerm) => {
 	})
 }
 
+module.exports.find = find;
 module.exports.save = save;
