@@ -12,21 +12,21 @@ app.use(express.static(__dirname + '/../client/dist'));
 repos = [];
 app.route('/repos')
     .post(function (req, res) {
-	  // TODO - your code here!
 	  // This route should take the github username provided
 	  // and get the repo information from the github API, then
 	  // save the repo information in the database
-	  getReposByUsername(req.body);
+	  // first part will need to call helper function and search for info from the API
+
+	  var data = getReposByUsername(req.body);
 	  res.json(req.body);
 	  console.log('repos', req.body);
 
-	  // first part will need to call helper function and search for info from the API
-	  // getReposByUsername(req.body);
-
 	  // second part will need to save the info into the database
+      user.saveUsers(data);
+
+
 	})
     .get(function (req, res) {
-	  // TODO - your code here!
 	  // This route should send back the top 25 repos
 	  // send back top 25 repos from the database
 	  // order by forks count

@@ -15,7 +15,7 @@ let getReposByUsername = (term) => {
       console.error('there is an error', error);
     }
     let data = JSON.parse(body);
-    console.log('here is data', data);
+    // console.log('here is data', data);
   })
 
 }
