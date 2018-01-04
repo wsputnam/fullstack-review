@@ -21,9 +21,7 @@ var User = mongoose.model('User', repoSchema);
 
 module.exports = {
 	saveUsers: function(data, res) {
-		console.log('results res save', res);
 		var repo = data;
-		console.log('here is the repo', repo);
 		new User({username: repo.owner.login, userID: repo.owner.id, repoName: repo.name, repoID: repo.id, forks: repo.forks_count})
 		.save(function(err) {
 			if (err) {
@@ -43,9 +41,10 @@ module.exports = {
 				res.statusCode(404);
 				res.end(err);
 			} else {
-				for (var i = 0; i < 25; i++) {
+				for (var i = 0; i < docs.length; i++) {
 					console.log('user:', docs[i].username);
 				}
+				console.log('docs', docs.slice(0, 25));
 				res.end(JSON.stringify(docs.slice(0, 25)));
 			}
 		});

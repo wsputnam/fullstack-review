@@ -1,6 +1,5 @@
 const express = require('express');
 let app = express();
-// const db = require('./db');
 const user = require('../database/index.js');
 const getReposByUsername = require('../helpers/github.js');
 
@@ -46,11 +45,11 @@ app.route('/repos')
 	  // 		res.json(data);
 	  // 	}
 	  // });
-	  // user.findResults(function(err, data) {
-	  // 	res.json(data);
-	  // })
-	  res.json(req.body);
-	  console.log(user);
+	  user.findResults(req, res, function(err, data) {
+	  	console.log('req', req);
+	  	res.json(data);
+	  });
+	  // res.json(req.body);
 	  console.log('hello there from get request');
 
 	  // need to learn how to query this in the mongodb database
