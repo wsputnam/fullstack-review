@@ -19,12 +19,8 @@ let getReposByUsername = (term, callback) => {
     // console.log('here is data', data);
     data.forEach(function(item) {
       callback(item);
-    })
-    // callback(data[0]);
-    // for (var i = 0; i < data.length; i++) {
-    //   db.saveUsers(data[i]);
-    // }
-  })
+    });
+  });
 
 }
 
