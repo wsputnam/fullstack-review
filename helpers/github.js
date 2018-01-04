@@ -17,8 +17,10 @@ let getReposByUsername = (term, callback) => {
     }
     let data = JSON.parse(body);
     // console.log('here is data', data);
-
-    callback(data[0]);
+    data.forEach(function(item) {
+      callback(item);
+    })
+    // callback(data[0]);
     // for (var i = 0; i < data.length; i++) {
     //   db.saveUsers(data[i]);
     // }
