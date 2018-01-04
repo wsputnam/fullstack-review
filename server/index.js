@@ -17,9 +17,16 @@ app.route('/repos')
 	  // save the repo information in the database
 	  // first part will need to call helper function and search for info from the API
 
-	  getReposByUsername(req.body);
-	  res.json(req.body);
-      user.saveUsers(req.body);
+	  getReposByUsername(req.body, function(data) {
+	  	user.saveUsers(data, res);
+	  });
+      // user.saveUsers(function(err, data) {
+      // 	if (err) {
+      // 		console.log('error saving', err);
+      // 	} else {
+      // 		res.json(data);
+      // 	}
+      // });
 	  // second part will need to save the info into the database
       // user.saveUsers(data);
 
@@ -31,8 +38,18 @@ app.route('/repos')
 	  // order by forks count
 
 	  // are we sending the database or the html file here?
+	  // getReposByUsername(req.body, user.findResults);
+	  // 	function(err, data) {
+	  // 	if (err) {
+	  // 		console.log('error', err);
+	  // 	} else {
+	  // 		res.json(data);
+	  // 	}
+	  // });
+	  // user.findResults(function(err, data) {
+	  // 	res.json(data);
+	  // })
 	  res.json(req.body);
-	  user.findResults();
 	  console.log(user);
 	  console.log('hello there from get request');
 
